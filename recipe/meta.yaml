@@ -1,0 +1,58 @@
+{% set name = "python-librt" %}
+{% set version = "0.8.1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/{{ name.split('-')[1][0] }}/{{ name.split('-')[1] }}/{{ name.split('-')[1] }}-{{ version }}.tar.gz
+    sha256: be46a14693955b3bd96014ccbdb8339ee8c9346fbe11c1b78901b55125f14c73
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true # [py<39]
+
+requirements:
+  build:
+    - {{ stdlib("c") }}
+    - {{ compiler("c") }}
+  host:
+    - pip
+    - python
+    - setuptools >=77.0.3
+  run:
+    - python
+
+test:
+  source_files:
+    - smoke_tests.py
+  imports:
+    - librt
+  commands:
+    - pip check
+    - pytest -vv --tb=long --color=yes smoke_tests.py
+  requires:
+    - pip
+    - mypy_extensions
+    - pytest
+
+about:
+  home: https://pypi.org/project/librt
+  summary: Mypyc runtime library
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  description: |
+    This library contains efficient C implementations of various Python standard library classes and functions.
+    Mypyc can use these fast implementations when compiling Python code to native extension modules.
+    Mypyc compiler is a part of mypy distribution.
+  dev_url: https://github.com/mypyc/librt
+  doc_url: https://github.com/mypyc/librt/blob/master/README.md
+
+
+extra:
+  recipe-maintainers:
+    - bollwyvl
+    - conda-forge/mypy
