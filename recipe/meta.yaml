@@ -1,5 +1,5 @@
 {% set name = "python-librt" %}
-{% set version = "0.8.1" %}
+{% set version = "0.13.0" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/{{ name.split('-')[1][0] }}/{{ name.split('-')[1] }}/{{ name.split('-')[1] }}-{{ version }}.tar.gz
-    sha256: be46a14693955b3bd96014ccbdb8339ee8c9346fbe11c1b78901b55125f14c73
+    sha256: 1d2a610c14ac0d0750ee0a3ab8548e83155258387891caaca04def4bf7289781
 
 build:
   number: 0
