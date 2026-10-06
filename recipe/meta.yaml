@@ -1,5 +1,5 @@
 {% set name = "python-librt" %}
-{% set version = "0.13.0" %}
+{% set version = "0.16.0" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/{{ name.split('-')[1][0] }}/{{ name.split('-')[1] }}/{{ name.split('-')[1] }}-{{ version }}.tar.gz
-    sha256: 1d2a610c14ac0d0750ee0a3ab8548e83155258387891caaca04def4bf7289781
+    sha256: ac38d6d8d66bf3d744148dbbc0b8e193e195a51e364ed55e224631f5721891fc
 
 build:
   number: 0
@@ -16,8 +16,8 @@ build:
 
 requirements:
   build:
-    - {{ stdlib("c") }}
-    - {{ compiler("c") }}
+    - {{ stdlib('c') }}
+    - {{ compiler('c') }}
   host:
     - pip
     - python
